@@ -32,7 +32,7 @@ func main() {
 	config := water.Config{
 		DeviceType: water.TAP,
 	}
-	config.Name = fmt.Sprintf("vnats%d", *vlanID)
+	deviceName := fmt.Sprintf("vnats%d", *vlanID)
 	ifce, err := water.New(config)
 	if err != nil {
 		log.Fatal(err)
@@ -45,7 +45,7 @@ func main() {
 		log.Fatal(err)
 	}
 	for _, nifce := range nifces {
-		if nifce.Name == config.Name {
+		if nifce.Name == deviceName {
 			ownEth = nifce.HardwareAddr
 			break
 		}
